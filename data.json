@@ -1,0 +1,112 @@
+{
+  "title":"cards",
+  "internalinfo":"array of all cards",
+  "content": [
+    {
+      "uniqueID":"#001",
+      "internalinfo": "debugging info",
+      "properties": {
+        "name": "Something Worth Fighting For",
+        "class": [
+          {"classname": "Guardian"}
+        ],
+        "cost": "3",
+        "type": "Asset",
+        "testicons": [
+          {"iconname": "willpower"}
+        ],
+        "traits": [
+          {"traitname":"Talent"}
+        ],
+        "set":"The Secret Name 109",
+        "encounter":"",
+        "hidden": 0,
+        "image": "https://arkhamdb.com/bundles/cards/05109.jpg",
+        "xp": "",
+        "health": "-",
+        "sanity": "3",
+        "setnumber": "103",
+        "ruletext": "Something Worth Fighting For may be assigned horror dealt to other investigators at your location.",
+        "flavortext": "I can't die here. Not now. Not yet.",
+        "credits": "Mauro Dal Bo",
+        "ruling": "",
+        "slot": [
+          {"slotname":""}
+        ]
+      }
+    },
+    {
+      "uniqueID":"#002",
+      "internalinfo": "debugging info",
+      "properties": {
+        "name": "Banish",
+        "class": [
+          {"classname": "Mystic"}
+        ],
+        "cost": "2",
+        "type": "Event",
+        "testicons": [
+          {"iconname": "willpower"},
+          {"iconname": "agility"}
+        ],
+        "traits": [
+          {"traitname":"Spell"}
+        ],
+        "set":"The Secret Name 113",
+        "encounter":"",
+        "hidden": 0,
+        "image": "https://arkhamdb.com/bundles/cards/05113.jpg",
+        "xp": "1",
+        "health": "",
+        "sanity": "",
+        "setnumber": "103",
+        "ruletext": "Evade. Use only on a non-Elite enemy. This evasion attempt uses willpower instead of agility . If you succeed, move the enemy just evaded to any location in play. If you succeed and a chaos symbol was revealed during this evasion attempt, that enemy does not ready during the next upkeep phase.",
+        "flavortext": "",
+        "credits": "Stephen Somers",
+        "ruling": "",
+        "slot": [
+          {"slotname":""}
+        ]
+      }
+    },
+    {
+      "uniqueID":"#003",
+      "internalinfo": "debugging info",
+      "properties": {
+        "name": "Enchanted Blade",
+        "class": [
+          {"classname": "Mystic"},
+          {"classname": "Guardian"}
+        ],
+        "cost": "3",
+        "type": "Asset",
+        "testicons": [
+          {"iconname": "combat"}
+        ],
+        "traits": [
+          {"traitname":"Item"},
+          {"traitname":"Relic"},
+          {"traitname":"Weapon"},
+          {"traitname":"Melee"}
+        ],
+        "set":"The Secret Name 118",
+        "encounter":"",
+        "hidden": 0,
+        "image": "https://arkhamdb.com/bundles/cards/05118.jpg",
+        "xp": "",
+        "health": "",
+        "sanity": "",
+        "setnumber": "118",
+        "ruletext": "Uses (3 charges). Fight. You get +1 combat for this attack. As an additional cost to initiate this ability, you may spend 1 charge to empower the blade. If you do, you get +1 combat and deal +1 damage for this attack.",
+        "flavortext": "",
+        "credits": "Tiziano Baracchi",
+        "ruling": "",
+        "slot": [
+          {"slotname":"Hand"},
+          {"slotname":"Arcane"}
+        ]
+      }
+    }
+  ]
+}
+
