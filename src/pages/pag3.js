@@ -34,7 +34,7 @@ var state = JSONData;
                 <td>{info.properties.type}</td>
               
               <td>{info.properties.set}</td>
-              <td>{info.properties.traits.map(val => (<p>{val.traitname}</p>))}
+              <td>{info.properties.traits.map(val => (<ul><li>{val.traitname}</li></ul>))}
               </td>
               
             </tr>
