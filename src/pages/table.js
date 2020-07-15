@@ -5,17 +5,22 @@ import JSONData from "../../content/data.json";
 
 
 class Table extends React.Component {
-  state = {
-    columns: Object.keys(JSONData.content[0]).map(value => ({
-      key: value
-    })),
-    data: JSONData
-  };
+//  state1 = {
+ //   columns: Object.keys(JSONData.content[0].properties[0]).map(value => ({
+//      key: value
+ //   })),
+  //  data: JSONData
+ // };
    
+   state = {
+   	columns: Object.keys(JSONData.content[0].properties), data: JSONData
+   };
 
   render() {
   //const obj = JSON.parse(JSONData);
   //document.getElementById('message').innerHTML = obj;
+  {console.log("Printing keys")}
+  {console.log(JSONData.content[0])}
   {console.log("Printing data")}
   {console.log(this.state.data)}
   {console.log("Printing columns")}

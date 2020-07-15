@@ -1,5 +1,6 @@
-import React from "react"
 import { Link } from "gatsby"
+  import React, { Component } from "react";
+//import { Table } from "reactstrap";
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
@@ -8,27 +9,44 @@ import JSONData from "../../content/data.json"
 import { Container, Table} from 'react-bootstrap'
 
 
-const pag3 = () => (
-  <Layout>
-    <SEO title="Home" />
-    <Link to="/page-2">Go  to the JSON page</Link>
-    <Container>   
-   
-   <h1>Hi from the JSON page</h1>
-        <p>Welcome to JSONtest</p>
-    <Link to="/">Go back to the homepage</Link>
-     <div style={{ maxWidth: `960px`, margin: `1.45rem` }}>
-    <h1>{JSONData.title}</h1>
-  <ul>
-     {JSONData.content.map((data, index) => {
-       return (<><li key={`content_item_${index}`}>{data.uniqueID}</li>
-       	<li key={`content_item_${index}`}>{data.properties.class}</li></>)
-   })}
-    </ul>
-    </div>
-</Container>
-</Layout>    
+const pag3 = () => {
+
+var state = JSONData;
+
+  
+  
+ const element = <div id='root'>  <Table className="align-items-center table-flush" responsive>
+        <thead className="thead-light">
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">cost</th>
+            <th scope="col">Type</th>
+            <th scope="col">Set</th>
+            <th scope="col">Traits</th>
+          </tr>
+        </thead>
+        <tbody>
+          {state.content.map(info => (
+            <tr>
+              <th scope="row">{info.properties.name}</th>
+              <td>{info.properties.cost}</td>
+             
+                <td>{info.properties.type}</td>
+              
+              <td>{info.properties.set}</td>
+              <td>{info.properties.traits.map(val => (<p>{val.traitname}</p>))}
+              </td>
+              
+            </tr>
+          ))}
+        </tbody>
+      </Table>
+      </div>;
+     return element;
+      
+}
+  
  
- )
+ 
 
 export default pag3
