@@ -11,9 +11,10 @@ const IndexPage = () => (
   <Layout>
     <SEO title="Home" />
     <Link to="/page-2">Go  to the JSON page</Link>
-    <Container>
+
     <h1>Table here</h1>
-    <Table striped bordered hover>
+    <Container>
+    <Table size = "sm" striped bordered hover>
   <thead>
     <tr>
       <th>#</th>
@@ -42,7 +43,8 @@ const IndexPage = () => (
     </tr>
   </tbody>
 </Table>
- 	</Container>
+</Container>
+
   </Layout>
 )
 

@@ -15,7 +15,7 @@ var state = JSONData;
 
   
   
- const element = <div id='root'>  <Table className="align-items-center table-flush" responsive>
+ const element = <div id='root'>  <Table striped bordered hover className="align-items-center table-flush" responsive>
         <thead className="thead-light">
           <tr>
             <th scope="col">Name</th>
@@ -28,7 +28,7 @@ var state = JSONData;
         <tbody>
           {state.content.map(info => (
             <tr>
-              <th scope="row">{info.properties.name}</th>
+              <td scope="row">{info.properties.name}</td>
               <td>{info.properties.cost}</td>
              
                 <td>{info.properties.type}</td>
