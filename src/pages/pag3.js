@@ -12,9 +12,7 @@ import { Container, Table} from 'react-bootstrap'
 const pag3 = () => {
 
 var state = JSONData;
-
-  
-  
+ 
  const element = <div id='root'>  <Table striped bordered hover className="align-items-center table-flush" responsive>
         <thead className="thead-light">
           <tr>
@@ -45,8 +43,6 @@ var state = JSONData;
      return element;
       
 }
-  
- 
- 
+
 
 export default pag3
