@@ -35,7 +35,7 @@ var state = JSONData;
           <tr>
             <th scope="col">Name</th>
             <th scope="col">Class</th>
-            <th scope="col">cost</th>
+            <th scope="col">Cost</th>
             <th scope="col">Type</th>
             <th scope="col">Set</th>
           </tr>
