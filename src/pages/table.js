@@ -1,45 +1,66 @@
-import React from "react";
-import TableHeader from "../components/tableheader";
-import TableBody from "../components/tablebody";
-import JSONData from "../../content/data.json";
+import React, { Component } from "react";
+import ReactDOM from "react-dom";
+import Multiselect from "@khanacademy/react-multi-select";
 
+//import "./styles.css";
 
-class Table extends React.Component {
-//  state1 = {
- //   columns: Object.keys(JSONData.content[0].properties[0]).map(value => ({
-//      key: value
- //   })),
-  //  data: JSONData
- // };
-   
-   state = {
-   	columns: Object.keys(JSONData.content[0].properties), data: JSONData
-   };
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selected: [],
+      isLoading: true
+    };
+  }
+
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState({
+        isLoading: false
+      });
+    }, 5000);
+  }
+
+  options = [
+    { label: "KPI Degradtion", value: "kpi_degradation" },
+    { label: "Sleeping Cell", value: "sleeping_cell" },
+    { label: "Anomaly", value: "anomaly" },
+    { label: "Label1", value: "label_1" },
+    { label: "Label2fgfgfgfghfghgh", value: "label_2" },
+    { label: "Label3", value: "label_3" },
+    { label: "Label4", value: "label_4" },
+    { label: "Label5", value: "label_5" }
+  ];
+
+  handleSelectedChanged = selected => {
+    this.setState({ selected });
+  };
 
   render() {
-  //const obj = JSON.parse(JSONData);
-  //document.getElementById('message').innerHTML = obj;
-  {console.log("Printing keys")}
-  {console.log(JSONData.content[0])}
-  {console.log("Printing data")}
-  {console.log(this.state.data)}
-  {console.log("Printing columns")}
-  {console.log(this.state.columns)}
-    return (<>
-    <p id = "message"></p>
-    <p> json <script>JSON.parse(JSONData).title</script> </p>
-      <table>
-        <TableHeader columns={this.state.columns} />
-        <TableBody
-          columns={this.state.columns}
-          data={this.state.data}
+    const { selected, isLoading } = this.state;
+    return (
+      <div>
+        <h1>Multiselect dropdown</h1>
+        <Multiselect
+          options={this.options}
+          onSelectedChanged={this.handleSelectedChanged}
+          selected={selected}
+          isLoading={isLoading}
+          disabled={isLoading}
+          disableSearch={true}
+          overrideStrings={{
+            selectSomeItems: "do me a favor by selecting something",
+            allItemsAreSelected: "You have gone nuts... all selected",
+            selectAll: "do u wanna select all of them?",
+            search: "Fantasy search"
+          }}
         />
-      //  {console.log(this.state.columns)}
-      </table>
-      </>
+        {selected.join(", ")}
+      </div>
     );
   }
 }
 
-export default Table;
+const rootElement = document.getElementById("root");
+ReactDOM.render(<App />, rootElement);
 
