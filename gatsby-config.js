@@ -13,6 +13,21 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
+    `gatsby-transformer-json`,
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+      		name: `data`,
+      		path: `${__dirname}/content`,
+      		},
+    },
+    {
+  resolve: "gatsby-plugin-extract-schema",
+    options: {
+      dest: `${__dirname}/path/to/schema.json`,
+    },
+    },
+
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {

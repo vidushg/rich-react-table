@@ -4,7 +4,7 @@ import { Link } from "gatsby"
 import Layout from "../components/layout"
 import Image from "../components/image"
 import SEO from "../components/seo"
-
+import { CardComponent } from "../components/query"
 import { Container, Table} from 'react-bootstrap'
 
 const IndexPage = () => (
@@ -13,7 +13,9 @@ const IndexPage = () => (
     <Link to="/page-2">Go  to the JSON page</Link>
 
     <h1>Table here</h1>
+    <CardComponent />
     <Container>
+     
     <Table size = "sm" striped bordered hover>
   <thead>
     <tr>

@@ -1,53 +1,31 @@
-import { Link } from "gatsby"
-  import React, {Component} from "react";
-//import { Table } from "reactstrap";
+import {useStaticQuery, StaticQuery, graphql, Link } from "gatsby"
+import * as React from "react";
 import "bootstrap/dist/css/bootstrap.css";
-//import Layout from "../components/layout"
-//import SEO from "../components/seo"
+
 import "../css/custom.css"
 
 import ReactDOM from "react-dom";
 
 import JSONData from "../../content/data.json"
 import {Button, Container, OverlayTrigger, Tooltip, Table} from 'react-bootstrap'
-import MultiSelect from "@khanacademy/react-multi-select";
+import MultiSelect from "react-multi-select-component";
+import select from "./table.js"
+import { useQuery } from "@apollo/react-hooks";
+import { gql } from "apollo-boost";
+import { CardComponent } from "../components/query"
 
 
-class Pag3 extends Component {
 
-constructor(props) {
-    super(props);
-    this.state = {
-      selected: [],
-      isLoading: true
-    };
-  }
-  
-  componentDidMount() {
-    setTimeout(() => {
-      this.setState({
-        isLoading: false
-      });
-    }, 5000);
-  }
 
-//const [traits, setTraits, assets, setAssets, classes, setClasses] = useState(0);
-/*
-const updateTraits (val) {
-	setTraits(val);
-};
 
-const updateAssets (val) {
-	setAssets(val);
-};
+ 
+const table = ({data}) => {
 
-const updateClasses (val) {
-	setClasses(val);
-};*/
 
-//multiselect
+console.log("helloo"+{data})
 
-  traits = {
+
+ const traits = {
 	"talent":"Talent",
 	"spell":"Spell",
 	"icon":"Icon",
@@ -56,47 +34,49 @@ const updateClasses (val) {
 	"melee":"Melee"
 	}
 
- traitslist = Object.keys(this.traits)
+ const traitslist = Object.keys(traits)
 	.map(key => ({
 		value: key,
-		label: this.traits[key],
+		label: traits[key],
 		}));
 
 
 
- handleSelectedChanged = selected => {
+ function handleSelectedChanged ({selected}) {
     this.setState({ selected });
   };
 
+  // [selected, setSelected] = useState([]);
+//state=this.state.bind(this);
+ function traitSelect (){
 
- traitSelect (){
- const {selected} = this.state;
-
-	
-	return (<MultiSelect
-			options={this.traitslist}
-			selected={selected}
-			          onSelectedChanged={this.handleSelectedChanged} />)
+ 
+  return (
+    <select props={this.traitslist} />
+  );
 }
 
 
- renderSelect (){
- 	console.log("hereselect")
+function renderSelect (){
+ 	console.log({data})
 return (<>{this.traitSelect()}</>)
 
 }
 
 
-//filter function listening for changes on traits assets classes
+// function listening for changes on traits assets classes
 
 /**
 *when change detected, call render function again with updated params
 */
 
- renderTable (){
- return (<>
- 	{this.renderSelect()}
+ const cards = data.allCleanJson;
 
+function renderTable (){
+ return (<>
+
+ 	{this.renderSelect()}
+	
 	<Table striped bordered hover className="align-items-center table-flush" responsive>
         <thead className="thead-light">
           <tr>
@@ -108,24 +88,24 @@ return (<>{this.traitSelect()}</>)
           </tr>
         </thead>
         <tbody>
-          {this.data.content.map(info => (
+          {this.cards.edges.map(node => (
             <tr>
               <td>
-              <OverlayTrigger placement="right" overlay = {this.renderCardNameToolTip(info.properties)}>
+              <OverlayTrigger placement="right" overlay = {this.renderCardNameToolTip(node.properties)}>
  	 <Button variant="Link">
               
-              {info.properties.name}</Button>
+              {node.properties.name}</Button>
               </OverlayTrigger></td>
               
               <td><ul class="comma-list">
-              {info.properties.class.map(val => (<li>{val.classname}</li>))}</ul>
+              {node.properties.class.map(val => (<li>{val.classname}</li>))}</ul>
               </td>
               
-              <td>{info.properties.cost}</td>
+              <td>{node.properties.cost}</td>
              
-                <td>{info.properties.type}</td>
+                <td>{node.properties.type}</td>
               
-              <td>{info.properties.set}</td>
+              <td>{node.properties.set}</td>
               
             </tr>
           ))}
@@ -136,17 +116,9 @@ return (<>{this.traitSelect()}</>)
 }
 
 
-
-
-
-
-
-
-
-
 /*function to render a tooltip with list of traits, list of icons, and ruletext for a given card*/
 
- renderCardNameToolTip(val){
+function renderCardNameToolTip(val){
  return (
  	  <Tooltip id="button-tooltip">	
  	  <em> Traits </em>
@@ -158,62 +130,63 @@ return (<>{this.traitSelect()}</>)
 	);
 }
 
- data = JSONData;
- 
-  
-  //const element = <div id='root'><p>hello</p>{renderTable()}</div>;
-  
-  element1 = <div id='root'>
- 	<Table striped bordered hover className="align-items-center table-flush" responsive>
-        <thead className="thead-light">
-          <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Class</th>
-            <th scope="col">Cost</th>
-            <th scope="col">Type</th>
-            <th scope="col">Set</th>
-          </tr>
-        </thead>
-        <tbody>
-          {this.data.content.map(info => (
-            <tr>
-              <td>
-              <OverlayTrigger placement="right" overlay = {this.renderCardNameToolTip(info.properties)}>
- 	 <Button variant="Link">
-              
-              {info.properties.name}</Button>
-              </OverlayTrigger></td>
-              
-              <td><ul class="comma-list">
-              {info.properties.class.map(val => (<li>{val.classname}</li>))}</ul>
-              </td>
-              
-              <td>{info.properties.cost}</td>
-             
-                <td>{info.properties.type}</td>
-              
-              <td>{info.properties.set}</td>
-              
-            </tr>
-          ))}
-        </tbody>
-      </Table>
-      </div>;
-    // return element;
- 
- render() {
- 
- 	return(<div id="root">{this.renderTable}</div>);
- }     
+
+const element = <div id="root">{this.renderTable()}</div>;
+    
 };
 
-const Exp = (props) => (
-<div className="exp">
-	<Pag3 />
-	</div>
-	)
-export default Exp
+export const query = graphql`
+ query TraitQuery  {
+  allCleanJson(filter: {properties: {traits: {elemMatch: {traitname: {in: "Item"}}}}}) {
+    edges {
+      node {
+        properties {
+          name
+          traits {
+            traitname
+          }
+          class {
+            classname
+          }
+          cost
+          credits
+          encounter
+          flavortext
+          hidden
+          image
+          health
+          ruletext
+          ruling
+          set
+          sanity
+          setnumber
+          slot {
+            slotname
+          }
+          testicons {
+            iconname
+          }
+          type
+          xp
+        }
+      }
+    }
+  }
+}
+`;
 
+
+
+
+const pag3 = () => {
+
+const r = new table().element;
+
+return r;
+
+}
+
+export  default pag3
 
 //ReactDOM.render(<Exp />, document.getElementById('root'));
 //const rootElement = document.getElementById("root");

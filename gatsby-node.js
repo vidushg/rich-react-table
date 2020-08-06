@@ -1,7 +1,21 @@
-/**
- * Implement Gatsby's Node APIs in this file.
- *
- * See: https://www.gatsbyjs.org/docs/node-apis/
- */
+/*exports.createSchemaCustomization = ({ actions }) => {
+  const { createTypes } = actions
 
-// You can delete this file if you're not using it
+ 
+  const typeDefs = `
+
+    
+    
+    type Card implements Node @childOf(types: ["ContentJson"], many: true) {
+    	uniqueID: String!
+    	internalinfo: String  
+
+    }
+    
+    type ContentJson implements Node  {
+      content: [Card!]!
+    }
+  `
+  createTypes(typeDefs)
+  }
+  */
